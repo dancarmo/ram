@@ -2,7 +2,7 @@
 
 Um simples sistema de cache em memória.
 
-## Instação
+## Instalação
 
     npm install ram
 
