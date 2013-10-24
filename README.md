@@ -12,7 +12,6 @@ Um simples sistema de cache em memória.
     var Memory = ram.Memory;
 
     // Inserindo na memória
-
     var users = new Memory('users');
 
     users.insert('dancarmo', {
@@ -20,11 +19,11 @@ Um simples sistema de cache em memória.
       image: 'dan.png',
     });
 
-    // Removendo objeto
-    users.remove('dancarmo');
-
-    // Recebendo objeto
+    // Recebendo objeto diretamente
     users.get('dancarmo');
 
     // Procurando objeto na coleção
     users.find({ name: 'Dan' });
+
+    // Removendo objeto
+    users.remove('dancarmo');
