@@ -2,7 +2,10 @@ var cache = {};
 
 function Memory (collection) {
   this.collection = collection;
-  cache[collection] = {};
+
+  if (cache[collection] == undefined ) {
+    cache[collection] = {};
+  }
 };
 
 Memory.prototype.insert = function (keyIndex, value) {
