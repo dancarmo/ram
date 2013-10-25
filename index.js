@@ -24,11 +24,11 @@ Memory.prototype.get = function (keyIndex) {
   return cache[this.collection][keyIndex];
 };
 
-Memory.prototype.getAll = function (keyIndex) {
-  return cache[this.collection];
-};
-
 Memory.prototype.find = function (requisites) {
+  if (!requisites) {
+    return cache[this.collection];
+  };
+
   var items = [];
   var collection = cache[this.collection];
 
@@ -57,10 +57,6 @@ Memory.prototype.find = function (requisites) {
   };
 
   return items
-};
-
-Memory.prototype.isEmpty = function () {
-  return cache[collection] == {}
 };
 
 exports.Memory = Memory;
