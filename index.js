@@ -29,11 +29,25 @@ Memory.prototype.find = function (requisites) {
     return cache[this.collection];
   };
 
-  var items = [];
-  var collection = cache[this.collection];
+  return find(requisites, 'all', this.collection);
+};
 
-  for (i=0; i<Object.keys(cache[this.collection]).length; i++) {
-    var item = cache[this.collection][Object.keys(cache[this.collection])[i]];
+Memory.prototype.findOne = function (requisites) {
+  if (!requisites) {
+    return cache[this.collection];
+  };
+
+  return find(requisites, 'one', this.collection);
+};
+
+// Memory.prototype.update = function (requisites) {}
+
+function find(requisites, type, collection) {
+
+  var items = undefined;
+
+  for (i=0; i<Object.keys(cache[collection]).length; i++) {
+    var item = cache[collection][Object.keys(cache[collection])[i]];
 
     for (j=0; j<Object.keys(item).length; j++) {
       var key = Object.keys(item)[j];
@@ -52,11 +66,19 @@ Memory.prototype.find = function (requisites) {
     };
 
     if (itemFound) {
-      items.push(itemFound);
+      if (type == 'one') {
+        return itemFound;
+      } else {
+        items.push(itemFound);
+      };
     };
   };
 
-  return items
-};
+  if (items === []) {
+    return null
+  } else {
+    return items
+  }
+}
 
 exports.Memory = Memory;
